@@ -2,6 +2,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Card from "./components/Card";
 import Counter from "./components/Counter";
+import Form from "./components/Form";
+import Ue from "./components/Ue";
+import GetData from "./components/GetData";
 
 function App() {
   return (
@@ -12,7 +15,9 @@ function App() {
       <Card name='Nike Shoes' description='Air Jordan'/>
       <Card name='Sunglasses' description='These are Rayban sunglasses'/> */}
 
-      <Counter/>
+      <GetData/>
+
+    
     </div>
   );
 }
