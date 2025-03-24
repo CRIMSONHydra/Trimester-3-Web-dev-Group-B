@@ -3,43 +3,49 @@ import { genreids } from "../utlities/genre";
 
 function WatchList({ watchList }) {
   const [search, setSearch] = useState("");
-  const [genreList , setGenreList] = useState([])
+  const [genreList, setGenreList] = useState([]);
+  const [currGenre, setCurrGenre] = useState("All Genres");
 
   function handleSearch(e) {
     setSearch(e.target.value);
   }
 
+  function handleGenre(genre) {
+    setCurrGenre(genre);
+    console.log(genre);
+  }
 
-  useEffect(()=>{
-       let temp= watchList.map((movieObj)=>{
-          return genreids[movieObj.genre_ids[0]]
-        })
-        console.log(temp)
-        
-       const genreSet =  new Set(temp)
+  useEffect(() => {
+    let temp = watchList.map((movieObj) => {
+      return genreids[movieObj.genre_ids[0]];
+    });
+    console.log(temp);
 
-       console.log(genreSet)
+    const genreSet = new Set(temp);
 
-       setGenreList(['All Genres' , ...genreSet])
-        
- 
-  }, [])
+    console.log(genreSet);
 
-
-
-
-
+    setGenreList(["All Genres", ...genreSet]);
+  }, [watchList]);
 
   return (
     <>
       {/* Genre Based Filtering */}
       <div className="flex justify-center m-4">
-        {genreList.map((genre)=>{
-          return  <div className="mx-4 flex justify-center items-center bg-blue-400 h-[3rem] w-[9rem] text-white font-bold border rounded-xl">
-           {genre}
-        </div>
+        {genreList.map((genre) => {
+          return (
+            <div
+              onClick={() => handleGenre(genre)}
+              className={
+                currGenre == genre
+                  ? "mx-4 flex justify-center items-center bg-blue-400 h-[3rem] w-[9rem] text-white font-bold border rounded-xl"
+                  : "mx-4 flex justify-center items-center bg-gray-400 h-[3rem] w-[9rem] text-white font-bold border rounded-xl"
+              }
+            >
+              {genre}
+            </div>
+          );
         })}
-       
       </div>
 
       {/* Search Field */}
@@ -68,7 +74,13 @@ function WatchList({ watchList }) {
           </thead>
 
           <tbody>
-            {watchList
+            {watchList.filter((movieObj)=>{
+                if(currGenre =='All Genres'){
+                  return true
+                }else{
+                  return currGenre == genreids[movieObj.genre_ids[0]]
+                }
+            })
               .filter((movieObj) => {
                 return movieObj.title
                   .toLowerCase()
