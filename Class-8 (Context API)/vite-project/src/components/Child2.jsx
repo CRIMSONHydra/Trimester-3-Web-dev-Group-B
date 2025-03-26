@@ -1,10 +1,13 @@
 import React from 'react'
 
 
-function Child2() {
-
+function Child2({rules , tickets}) {
+   
   return (
-    <div className='children'>Child2 </div>
+    <div className='children'>
+        <h3>Child2 {rules} </h3>
+        <h3>Ride Started {tickets()}</h3>
+    </div>
   )
 }
 

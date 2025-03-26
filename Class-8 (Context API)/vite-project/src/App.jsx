@@ -25,7 +25,7 @@ function App() {
   return (
     <>
    
-    <Parent1/>
+    <Parent1 parkInformation={parkInfo}/>
     
     </>
   );
