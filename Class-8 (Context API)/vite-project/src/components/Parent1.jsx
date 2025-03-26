@@ -6,14 +6,14 @@ import Child2 from './Child2'
 // Child 2 - merryGoRound - Rules and Tickets
 
 
-function Parent1({parkInformation}) {
+function Parent1() {
 
 
   return (
     <>
-    <div className='parent'>Parent1 {parkInformation.parkName}</div>
-       <Child1 rules={parkInformation.rollerCoaster} tickets={parkInformation.ticketForRollerCoaster}  />
-       <Child2 rules={parkInformation.merryGoRound} tickets={parkInformation.ticketForMerryGoRound}   />
+    <div className='parent'>Parent1 </div>
+       <Child1  />
+       <Child2 />
     </>
   )
 }

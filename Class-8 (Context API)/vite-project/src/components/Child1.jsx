@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ParkContext } from './ParkContext'
+ParkContext
 
 
-function Child1({rules , tickets}) {
-   
+function Child1() {
+   const data = useContext(ParkContext)
   return (
     <div className='children'>
-        <h3>Child1 {rules} </h3>
-        <h3>Ride Started {tickets()}</h3>
+        <h3>Child1 {data.rollerCoaster} </h3>
+     
     </div>
   )
 }
