@@ -1,7 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { genreids } from "../utlities/genre";
+import { MovieContext } from "../context/MovieContext";
 
-function WatchList({ watchList }) {
+
+
+function WatchList() {
+
+
+   const {watchList} =  useContext(MovieContext)
   const [search, setSearch] = useState("");
   const [genreList, setGenreList] = useState([]);
   const [currGenre, setCurrGenre] = useState("All Genres");
