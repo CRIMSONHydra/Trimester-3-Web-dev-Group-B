@@ -4,7 +4,7 @@ function Memo() {
   const [count, setCount] = useState(0);
   const [number, setNumber] = useState(0);
 
-  let doubleValue2=0;
+  let doubleValue2;
   
   function doubleValue(num) {
     console.log(`Running for the num ${num}`);
@@ -14,11 +14,11 @@ function Memo() {
 
 //    const doubledValue = doubleValue(number);// 2
 
-//  const doubledValue = useMemo(()=>doubleValue(number), [number])
+ const doubledValue = useMemo(()=>doubleValue(number), [number])
 
-useEffect(()=>{
-    doubleValue2 = doubleValue(number)
-} , [number])
+// useEffect(()=>{
+//     doubleValue = doubleValue(number)
+// } , [number])
 
   return (
     <div>
@@ -31,7 +31,7 @@ useEffect(()=>{
         onChange={(e) => setNumber(e.target.value)}
       ></input>
 
-      <h3>Doubled Value : {doubleValue2}</h3>
+      <h3>Doubled Value : {doubledValue}</h3>
     </div>
   );
 }
