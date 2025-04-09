@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 function Memo() {
   const [count, setCount] = useState(0);
@@ -10,7 +10,9 @@ function Memo() {
     return num * 2;
   }
 
-  const doubledValue = doubleValue(number);
+//    const doubledValue = doubleValue(number);// 2
+
+ const doubledValue = useMemo(()=>doubleValue(number), [number])
 
   return (
     <div>
