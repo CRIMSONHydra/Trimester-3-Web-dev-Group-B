@@ -1,17 +1,12 @@
-import React, { useState , useCallback, useEffect} from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Child from "./components/Child";
-
+import Ref from "./components/Ref";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-
   return (
     <div>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <h3>count:{count} </h3>
-
-      <Child buttonName='Click this Button'/>
+      {/* <Child buttonName='Click this Button'/> */}
+      <Ref />
     </div>
   );
 }
