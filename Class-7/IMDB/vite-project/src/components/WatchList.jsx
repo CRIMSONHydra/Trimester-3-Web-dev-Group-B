@@ -7,7 +7,7 @@ import { MovieContext } from "../context/MovieContext";
 function WatchList() {
 
 
-   const {watchList} =  useContext(MovieContext)
+  const {watchList} =  useContext(MovieContext)
   const [search, setSearch] = useState("");
   const [genreList, setGenreList] = useState([]);
   const [currGenre, setCurrGenre] = useState("All Genres");
