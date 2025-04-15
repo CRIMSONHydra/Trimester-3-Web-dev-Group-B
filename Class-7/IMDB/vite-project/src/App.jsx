@@ -5,7 +5,9 @@ import Navbar from "./components/Navbar";
 import WatchList from "./components/WatchList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Banner from "./components/Banner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { MovieContext } from "./context/MovieContext";
+
 function App() {
 
   const [watchList , setWatchList] = useState([])
@@ -13,12 +15,27 @@ function App() {
 
   function handleAddToWatchList(movieObj){
     const updatedWatchlist = [...watchList , movieObj]
+
+    localStorage.setItem('watchListMovies', JSON.stringify(updatedWatchlist))
     setWatchList(updatedWatchlist)
+
     console.log(updatedWatchlist)
   }  
 
+
+  useEffect(()=>{
+    let watchListData=  localStorage.getItem('watchListMovies')
+
+    if(!watchListData){
+      return 
+    }
+
+    setWatchList(JSON.parse(watchListData))
+  }, [])
+
   return (
     <>
+    <MovieContext.Provider value={{handleAddToWatchList , watchList}} >
       <BrowserRouter>
         <Navbar />
 
@@ -27,15 +44,17 @@ function App() {
             path="/"
             element={
               <>
-                <Banner /> <Movies handleAddtoWatchList={handleAddToWatchList} />
+                <Banner /> <Movies />
               </>
             }
           />
-          <Route path="/watchlist" element={<WatchList />} />
+          <Route path="/watchlist" element={<WatchList/>} />
           <Route path="/recommend" element={<MovieRecommendation />} />
         </Routes>
       </BrowserRouter>
+      </MovieContext.Provider>
     </>
+    
   );
 }
 
